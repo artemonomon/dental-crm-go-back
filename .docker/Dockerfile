@@ -1,6 +1,10 @@
 ## Build
 FROM golang:1.19-bullseye AS build
 
+RUN wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy && \
+    chmod +x cloud_sql_proxy && \
+    mv cloud_sql_proxy /usr/local/bin/
+
 WORKDIR /app
 
 COPY go.mod go.sum ./

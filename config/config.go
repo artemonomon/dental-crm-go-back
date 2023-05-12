@@ -7,12 +7,11 @@ import (
 )
 
 type Configuration struct {
-	DatabaseName     string
-	DatabaseHost     string
-	DatabaseUser     string
-	DatabasePassword string
-	UnixSocketPath   string
-	//DatabasePath        string
+	DatabaseName        string
+	DatabaseHost        string
+	DatabaseUser        string
+	DatabasePassword    string
+	DatabasePath        string
 	MigrateToVersion    string
 	MigrationLocation   string
 	FileStorageLocation string
@@ -22,12 +21,11 @@ type Configuration struct {
 
 func GetConfiguration() Configuration {
 	return Configuration{
-		DatabaseName:     getOrDefault("DB_NAME", "dentalcrm_db"),
-		DatabaseHost:     getOrDefault("DB_HOST", "127.0.0.1"),
-		DatabaseUser:     getOrDefault("DB_USER", "postgres"),
-		DatabasePassword: getOrDefault("DB_PASSWORD", "1478"),
-		UnixSocketPath:   getOrDefault("INSTANCE_UNIX_SOCKET", ""),
-		//	DatabasePath:        getOrDefault("DB_PATH", "appname.db"),
+		//DatabaseName:     getOrDefault("DB_NAME", "dentalcrm_db"),
+		//DatabaseHost:     getOrDefault("DB_HOST", "127.0.0.1"),
+		//DatabaseUser:     getOrDefault("DB_USER", "postgres"),
+		//DatabasePassword: getOrDefault("DB_PASSWORD", "1478"),
+		DatabasePath:        getOrDefault("DB_PATH", "appname.db"),
 		MigrateToVersion:    getOrDefault("MIGRATE", "latest"),
 		MigrationLocation:   getOrDefault("MIGRATION_LOCATION", "migrations"),
 		FileStorageLocation: getOrDefault("FILES_LOCATION", "file_storage"),
