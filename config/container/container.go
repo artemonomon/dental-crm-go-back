@@ -71,6 +71,7 @@ func getDbSess(conf config.Configuration) db.Session {
 			Host:     conf.DatabaseHost,
 			Password: conf.DatabasePassword,
 			Database: conf.DatabaseName,
+			Socket:   conf.UnixSocketPath,
 		})
 	//sess, err := sqlite.Open(
 	//	sqlite.ConnectionURL{
