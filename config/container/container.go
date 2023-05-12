@@ -67,11 +67,10 @@ func New(conf config.Configuration) Container {
 func getDbSess(conf config.Configuration) db.Session {
 	sess, err := postgresql.Open(
 		postgresql.ConnectionURL{
+			Socket:   conf.UnixSocketPath,
 			User:     conf.DatabaseUser,
-			Host:     conf.DatabaseHost,
 			Password: conf.DatabasePassword,
 			Database: conf.DatabaseName,
-			Socket:   conf.UnixSocketPath,
 		})
 	//sess, err := sqlite.Open(
 	//	sqlite.ConnectionURL{

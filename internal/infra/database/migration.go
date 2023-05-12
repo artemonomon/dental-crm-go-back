@@ -32,7 +32,7 @@ func Migrate(conf config.Configuration) error {
 		"postgres://%s:%s@%s/%s?sslmode=disable",
 		conf.DatabaseUser,
 		conf.DatabasePassword,
-		conf.DatabaseHost,
+		conf.UnixSocketPath,
 		conf.DatabaseName,
 	)
 
