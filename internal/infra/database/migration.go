@@ -25,16 +25,16 @@ func Migrate(conf config.Configuration) error {
 		return err
 	}
 
-	urlString := fmt.Sprintf("sqlite3://%s",
-		conf.DatabasePath,
-	)
-	//urlString := fmt.Sprintf(
-	//	"postgres://%s:%s@%s/%s?sslmode=disable",
-	//	conf.DatabaseUser,
-	//	conf.DatabasePassword,
-	//	conf.DatabaseHost,
-	//	conf.DatabaseName,
+	//urlString := fmt.Sprintf("sqlite3://%s",
+	//	conf.DatabasePath,
 	//)
+	urlString := fmt.Sprintf(
+		"postgres://%s:%s@%s/%s?sslmode=disable",
+		conf.DatabaseUser,
+		conf.DatabasePassword,
+		conf.DatabaseHost,
+		conf.DatabaseName,
+	)
 
 	m, err := migrate.New(
 		"file://"+migrationsPath,

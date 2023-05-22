@@ -21,11 +21,11 @@ type Configuration struct {
 
 func GetConfiguration() Configuration {
 	return Configuration{
-		//DatabaseName:     getOrDefault("DB_NAME", "dentalcrm_db"),
-		//DatabaseHost:     getOrDefault("DB_HOST", "127.0.0.1"),
-		//DatabaseUser:     getOrDefault("DB_USER", "postgres"),
-		//DatabasePassword: getOrDefault("DB_PASSWORD", "1478"),
-		DatabasePath:        getOrDefault("DB_PATH", "appname.db"),
+		DatabaseName:     getOrDefault("DB_NAME", "dentalcrm_db"),
+		DatabaseHost:     getOrDefault("DB_HOST", "localhost"),
+		DatabaseUser:     getOrDefault("DB_USER", "postgres"),
+		DatabasePassword: getOrDefault("DB_PASSWORD", "1478"),
+		//DatabasePath:        getOrDefault("DB_PATH", "appname.db"),
 		MigrateToVersion:    getOrDefault("MIGRATE", "latest"),
 		MigrationLocation:   getOrDefault("MIGRATION_LOCATION", "migrations"),
 		FileStorageLocation: getOrDefault("FILES_LOCATION", "file_storage"),

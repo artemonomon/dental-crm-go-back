@@ -8,8 +8,7 @@ import (
 	"github.com/GrassBusinessLabs/eduprog-go-back/internal/infra/http/middlewares"
 	"github.com/go-chi/jwtauth/v5"
 	"github.com/upper/db/v4"
-	"github.com/upper/db/v4/adapter/sqlite"
-
+	"github.com/upper/db/v4/adapter/postgresql"
 	"log"
 	"net/http"
 )
@@ -65,17 +64,17 @@ func New(conf config.Configuration) Container {
 }
 
 func getDbSess(conf config.Configuration) db.Session {
-	//sess, err := postgresql.Open(
-	//	postgresql.ConnectionURL{
-	//		User:     conf.DatabaseUser,
-	//		Host:     conf.DatabaseHost,
-	//		Password: conf.DatabasePassword,
-	//		Database: conf.DatabaseName,
-	//	})
-	sess, err := sqlite.Open(
-		sqlite.ConnectionURL{
-			Database: conf.DatabasePath,
+	sess, err := postgresql.Open(
+		postgresql.ConnectionURL{
+			User:     conf.DatabaseUser,
+			Host:     conf.DatabaseHost,
+			Password: conf.DatabasePassword,
+			Database: conf.DatabaseName,
 		})
+	//sess, err := sqlite.Open(
+	//	sqlite.ConnectionURL{
+	//		Database: conf.DatabasePath,
+	//	})
 	if err != nil {
 		log.Fatalf("Unable to create new DB session: %q\n", err)
 	}

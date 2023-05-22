@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS users
 (
-    id           INTEGER PRIMARY KEY AUTOINCREMENT,
-    "name"       TEXT,
+    id           SERIAL PRIMARY KEY,
+    name         TEXT,
     email        TEXT,
     password     TEXT,
-    created_date DATETIME,
-    updated_date DATETIME,
-    deleted_date DATETIME NULL
+    created_date TIMESTAMP,
+    updated_date TIMESTAMP,
+    deleted_date TIMESTAMP NULL
 );
