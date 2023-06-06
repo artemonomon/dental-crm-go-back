@@ -49,6 +49,7 @@ func Router(cont container.Container) http.Handler {
 				apiRouter.Use(cont.AuthMw)
 
 				UserRouter(apiRouter, cont.UserController)
+				PatientRouter(apiRouter, cont.PatientController)
 
 				apiRouter.Handle("/*", NotFoundJSON())
 			})
@@ -101,6 +102,31 @@ func UserRouter(r chi.Router, uc controllers.UserController) {
 		apiRouter.Delete(
 			"/",
 			uc.Delete(),
+		)
+	})
+}
+
+func PatientRouter(r chi.Router, pc controllers.PatientController) {
+	r.Route("/patients", func(apiRouter chi.Router) {
+		apiRouter.Post(
+			"/",
+			pc.SavePatient(),
+		)
+		apiRouter.Put(
+			"/{pId}",
+			pc.UpdatePatient(),
+		)
+		apiRouter.Get(
+			"/",
+			pc.ShowList(),
+		)
+		apiRouter.Get(
+			"/{pId}",
+			pc.FindById(),
+		)
+		apiRouter.Delete(
+			"/{pId}",
+			pc.DeletePatient(),
 		)
 	})
 }
