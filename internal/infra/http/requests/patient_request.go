@@ -8,9 +8,9 @@ import (
 type CreatePatientRequest struct {
 	Name          string    `json:"name" validate:"required,gte=1,max=255"`
 	Phone1        string    `json:"phone" validate:"required,gte=1,max=20"`
-	Phone2        string    `json:"phone2" validate:"gte=1,max=20"`
-	Address       string    `json:"address" validate:"gte=1,max=255"`
-	Email         string    `json:"email" validate:"gte=1,max=255"`
+	Phone2        string    `json:"phone2" `
+	Address       string    `json:"address" `
+	Email         string    `json:"email" `
 	Sex           string    `json:"sex" validate:"required,gte=1,max=10"`
 	ImportantInfo string    `json:"important_info"`
 	Comment       string    `json:"comment"`
@@ -18,12 +18,12 @@ type CreatePatientRequest struct {
 }
 
 type UpdatePatientRequest struct {
-	Name          string    `json:"name" validate:"gte=1,max=255"`
-	Phone1        string    `json:"phone" validate:"gte=1,max=20"`
-	Phone2        string    `json:"phone2" validate:"gte=1,max=20"`
-	Address       string    `json:"address" validate:"gte=1,max=255"`
-	Email         string    `json:"email" validate:"gte=1,max=255"`
-	Sex           string    `json:"sex" validate:"gte=1,max=10"`
+	Name          string    `json:"name" `
+	Phone1        string    `json:"phone"`
+	Phone2        string    `json:"phone2"`
+	Address       string    `json:"address" `
+	Email         string    `json:"email" `
+	Sex           string    `json:"sex" `
 	ImportantInfo string    `json:"important_info"`
 	Comment       string    `json:"comment"`
 	DateOfBirth   time.Time `json:"date_of_birth"`
