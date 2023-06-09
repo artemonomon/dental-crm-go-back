@@ -12,6 +12,7 @@ type Patient struct {
 	Sex           string
 	ImportantInfo string
 	Comment       string
+	Status        string
 	DateOfBirth   time.Time
 	CreatedDate   time.Time
 	UpdatedDate   time.Time

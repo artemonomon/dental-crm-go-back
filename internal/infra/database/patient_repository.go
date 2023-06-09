@@ -18,6 +18,7 @@ type patient struct {
 	Sex           string     `db:"sex"`
 	ImportantInfo string     `db:"important_info"`
 	Comment       string     `db:"comment"`
+	Status        string     `db:"status"`
 	DateOfBirth   time.Time  `db:"date_of_birth"`
 	CreatedDate   time.Time  `db:"created_date,omitempty"`
 	UpdatedDate   time.Time  `db:"updated_date,omitempty"`
@@ -106,6 +107,7 @@ func (r patientRepository) mapDomainToModel(d domain.Patient) patient {
 		Sex:           d.Sex,
 		ImportantInfo: d.ImportantInfo,
 		Comment:       d.Comment,
+		Status:        d.Status,
 		DateOfBirth:   d.DateOfBirth,
 		CreatedDate:   d.CreatedDate,
 		UpdatedDate:   d.UpdatedDate,
@@ -124,6 +126,7 @@ func (r patientRepository) mapModelToDomain(m patient) domain.Patient {
 		Sex:           m.Sex,
 		ImportantInfo: m.ImportantInfo,
 		Comment:       m.Comment,
+		Status:        m.Status,
 		DateOfBirth:   m.DateOfBirth,
 		CreatedDate:   m.CreatedDate,
 		UpdatedDate:   m.UpdatedDate,

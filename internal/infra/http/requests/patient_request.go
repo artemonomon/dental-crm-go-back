@@ -14,6 +14,7 @@ type CreatePatientRequest struct {
 	Sex           string    `json:"sex" validate:"required,gte=1,max=10"`
 	ImportantInfo string    `json:"important_info"`
 	Comment       string    `json:"comment"`
+	Status        string    `json:"status"`
 	DateOfBirth   time.Time `json:"date_of_birth"`
 }
 
@@ -26,6 +27,7 @@ type UpdatePatientRequest struct {
 	Sex           string    `json:"sex" `
 	ImportantInfo string    `json:"important_info"`
 	Comment       string    `json:"comment"`
+	Status        string    `json:"status"`
 	DateOfBirth   time.Time `json:"date_of_birth"`
 }
 
@@ -39,6 +41,7 @@ func (r CreatePatientRequest) ToDomainModel() (interface{}, error) {
 		Sex:           r.Sex,
 		ImportantInfo: r.ImportantInfo,
 		Comment:       r.Comment,
+		Status:        r.Status,
 		DateOfBirth:   r.DateOfBirth,
 	}, nil
 }
@@ -53,6 +56,7 @@ func (r UpdatePatientRequest) ToDomainModel() (interface{}, error) {
 		Sex:           r.Sex,
 		ImportantInfo: r.ImportantInfo,
 		Comment:       r.Comment,
+		Status:        r.Status,
 		DateOfBirth:   r.DateOfBirth,
 	}, nil
 

@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS public.patients (
     important_info TEXT,
     comment TEXT,
      date_of_birth DATE,
+    status VARCHAR(20) DEFAULT 'Новий',
     created_date TIMESTAMP DEFAULT NOW(),
     updated_date TIMESTAMP DEFAULT NOW(),
     deleted_date TIMESTAMP NULL

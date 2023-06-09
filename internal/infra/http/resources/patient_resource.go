@@ -15,6 +15,7 @@ type PatientDto struct {
 	Sex           string    `json:"sex"`
 	ImportantInfo string    `json:"important_info"`
 	Comment       string    `json:"comment"`
+	Status        string    `json:"status"`
 	DateOfBirth   time.Time `json:"date_of_birth"`
 	CreatedDate   string    `json:"created_date"`
 	UpdatedDate   string    `json:"updated_date"`
@@ -38,6 +39,7 @@ func (d PatientDto) DomainToDto(patient domain.Patient) PatientDto {
 		Sex:           patient.Sex,
 		ImportantInfo: patient.ImportantInfo,
 		Comment:       patient.Comment,
+		Status:        patient.Status,
 		DateOfBirth:   patient.DateOfBirth,
 		CreatedDate:   patient.CreatedDate.Format("2006-01-02 15:04:05"),
 		UpdatedDate:   patient.UpdatedDate.Format("2006-01-02 15:04:05"),
