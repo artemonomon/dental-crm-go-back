@@ -46,6 +46,20 @@ func (c UserController) FindMe() http.HandlerFunc {
 	}
 }
 
+func (c UserController) ShowList() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		users, err := c.userService.ShowList()
+		if err != nil {
+			log.Printf("UserController: %s", err)
+			InternalServerError(w, err)
+			return
+		}
+
+		var userDto resources.UserDto
+		Success(w, userDto.DomainToDtoCollectionWithOPagination(users))
+	}
+}
+
 func (c UserController) Update() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		user, err := requests.Bind(r, requests.UpdateUserRequest{}, domain.User{})

@@ -12,6 +12,7 @@ type UserService interface {
 	FindByEmail(email string) (domain.User, error)
 	Save(user domain.User) (domain.User, error)
 	FindById(id uint64) (domain.User, error)
+	ShowList() ([]domain.User, error)
 	Update(user domain.User, req domain.User) (domain.User, error)
 	Delete(id uint64) error
 	GeneratePasswordHash(password string) (string, error)
@@ -73,6 +74,16 @@ func (s userService) Update(user domain.User, req domain.User) (domain.User, err
 	}
 
 	return user, nil
+}
+
+func (s userService) ShowList() ([]domain.User, error) {
+	users, err := s.userRepo.ShowList()
+	if err != nil {
+		log.Printf("UserService: %s", err)
+		return []domain.User{}, err
+	}
+
+	return users, nil
 }
 
 func (s userService) Delete(id uint64) error {

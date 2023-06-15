@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS public.patients (
     sex VARCHAR(10),
     important_info TEXT,
     comment TEXT,
-     date_of_birth DATE,
     status VARCHAR(20) DEFAULT 'Новий',
+    date_of_birth DATE,
     created_date TIMESTAMP DEFAULT NOW(),
     updated_date TIMESTAMP DEFAULT NOW(),
     deleted_date TIMESTAMP NULL

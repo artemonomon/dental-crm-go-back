@@ -50,6 +50,9 @@ func Router(cont container.Container) http.Handler {
 
 				UserRouter(apiRouter, cont.UserController)
 				PatientRouter(apiRouter, cont.PatientController)
+				DoctorRouter(apiRouter, cont.DoctorController)
+				AppointmentRouter(apiRouter, cont.AppointmentController)
+				TreatmentRouter(apiRouter, cont.TreatmentController)
 
 				apiRouter.Handle("/*", NotFoundJSON())
 			})
@@ -95,6 +98,10 @@ func UserRouter(r chi.Router, uc controllers.UserController) {
 			"/",
 			uc.FindMe(),
 		)
+		apiRouter.Get(
+			"/list",
+			uc.ShowList(),
+		)
 		apiRouter.Put(
 			"/",
 			uc.Update(),
@@ -127,6 +134,89 @@ func PatientRouter(r chi.Router, pc controllers.PatientController) {
 		apiRouter.Delete(
 			"/{pId}",
 			pc.DeletePatient(),
+		)
+	})
+}
+
+func DoctorRouter(r chi.Router, dc controllers.DoctorController) {
+	r.Route("/doctors", func(apiRouter chi.Router) {
+		apiRouter.Post(
+			"/",
+			dc.SaveDoctor(),
+		)
+		apiRouter.Put(
+			"/{dId}",
+			dc.UpdateDoctor(),
+		)
+		apiRouter.Get(
+			"/",
+			dc.ShowList(),
+		)
+		apiRouter.Get(
+			"/{dId}",
+			dc.FindById(),
+		)
+		apiRouter.Delete(
+			"/{dId}",
+			dc.DeleteDoctor(),
+		)
+	})
+}
+
+func AppointmentRouter(r chi.Router, ac controllers.AppointmentController) {
+	r.Route("/appointments", func(apiRouter chi.Router) {
+		apiRouter.Post(
+			"/",
+			ac.SaveAppointment(),
+		)
+		apiRouter.Put(
+			"/{aId}",
+			ac.UpdateAppointment(),
+		)
+		apiRouter.Get(
+			"/",
+			ac.ShowList(),
+		)
+		apiRouter.Get(
+			"/{aId}",
+			ac.FindById(),
+		)
+		apiRouter.Get(
+			"/byPatient/{pId}",
+			ac.FindByPatientId(),
+		)
+		apiRouter.Delete(
+			"/{aId}",
+			ac.DeleteAppointment(),
+		)
+	})
+}
+
+func TreatmentRouter(r chi.Router, tc controllers.TreatmentController) {
+	r.Route("/treatments", func(apiRouter chi.Router) {
+		apiRouter.Post(
+			"/",
+			tc.SaveTreatment(),
+		)
+		apiRouter.Put(
+			"/{tId}",
+			tc.UpdateTreatment(),
+		)
+		apiRouter.Get(
+			"/",
+			tc.ShowList(),
+		)
+		apiRouter.Get(
+			"/{tId}",
+			tc.FindById(),
+		)
+		apiRouter.Get(
+			"/byPatient/{pId}",
+			tc.FindByPatientId(),
+		)
+		apiRouter.Delete(
+			"/{tId}",
+			tc.DeleteTreatment(),
 		)
 	})
 }

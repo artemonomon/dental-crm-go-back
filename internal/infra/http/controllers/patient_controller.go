@@ -46,7 +46,7 @@ func (c PatientController) UpdatePatient() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		id, err := strconv.ParseUint(chi.URLParam(r, "pId"), 10, 64)
 		if err != nil {
-			log.Printf("EduprogController: %s", err)
+			log.Printf("PatientController: %s", err)
 			BadRequest(w, err)
 			return
 		}

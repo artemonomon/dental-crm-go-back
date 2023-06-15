@@ -44,3 +44,13 @@ func (d AuthDto) DomainToDto(token string, user domain.User) AuthDto {
 		User:  userDto.DomainToDto(user),
 	}
 }
+
+func (d UserDto) DomainToDtoCollectionWithOPagination(users []domain.User) []UserDto {
+	result := make([]UserDto, len(users))
+
+	for i := range users {
+		result[i] = d.DomainToDto(users[i])
+	}
+
+	return result
+}

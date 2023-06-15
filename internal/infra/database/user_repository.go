@@ -22,6 +22,7 @@ type UserRepository interface {
 	FindByEmail(email string) (domain.User, error)
 	Save(user domain.User) (domain.User, error)
 	FindById(id uint64) (domain.User, error)
+	ShowList() ([]domain.User, error)
 	Update(user domain.User) (domain.User, error)
 	Delete(id uint64) error
 }
@@ -75,6 +76,16 @@ func (r userRepository) Update(user domain.User) (domain.User, error) {
 	return r.mapModelToDomain(u), nil
 }
 
+func (r userRepository) ShowList() ([]domain.User, error) {
+	var users []user
+
+	err := r.coll.Find(db.Cond{"deleted_date": nil}).All(&users)
+	if err != nil {
+		return []domain.User{}, err
+	}
+
+	return r.mapModelToDomainCollection(users), nil
+}
 func (r userRepository) Delete(id uint64) error {
 	return r.coll.Find(db.Cond{"id": id, "deleted_date": nil}).Update(map[string]interface{}{"deleted_date": time.Now()})
 }
@@ -101,4 +112,14 @@ func (r userRepository) mapModelToDomain(m user) domain.User {
 		UpdatedDate: m.UpdatedDate,
 		DeletedDate: m.DeletedDate,
 	}
+}
+
+func (r userRepository) mapModelToDomainCollection(m []user) []domain.User {
+	result := make([]domain.User, len(m))
+
+	for i := range m {
+		result[i] = r.mapModelToDomain(m[i])
+	}
+
+	return result
 }

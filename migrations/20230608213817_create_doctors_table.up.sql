@@ -3,8 +3,9 @@ CREATE TABLE IF NOT EXISTS public.doctors (
     name VARCHAR(255) NOT NULL,
     phone1 VARCHAR(20),
     phone2 VARCHAR(20),
+    sex VARCHAR(10),
     specialization VARCHAR(255),
-    user_id INTEGER REFERENCES users (id),
+    user_id INTEGER REFERENCES users (id) UNIQUE,
     created_date TIMESTAMP DEFAULT NOW(),
     updated_date TIMESTAMP DEFAULT NOW(),
     deleted_date TIMESTAMP NULL
