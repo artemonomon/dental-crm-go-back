@@ -35,10 +35,7 @@ func (s patientService) Save(patient domain.Patient) (domain.Patient, error) {
 
 func (s patientService) Update(patient domain.Patient, id uint64) (domain.Patient, error) {
 	p, err := s.patientRepo.Update(patient, id)
-	if err != nil {
-		log.Printf("PatientService: %s", err)
-		return domain.Patient{}, err
-	}
+
 	return p, err
 }
 
